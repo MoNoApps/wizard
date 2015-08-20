@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "plank",
+  "version": "1.0.0",
+  "description": "Plank Base For Deck Planks",
+  "main": "plank.js",
+  "keywords": [
+    "plank"
+  ],
+  "author": "Daniel Martinez",
+  "license": "MIT"
+}
