@@ -11,6 +11,11 @@ var api = {
       route: "generate",
       fn: require('./api/wizard').generate,
       params: {}
+    },
+    {
+      route: "destroy",
+      fn: require('./api/wizard').destroy,
+      params: {}
     }
   ]
 };

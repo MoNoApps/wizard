@@ -1,0 +1,20 @@
+.col-xs-12.col-sm-3.col-md-3.col-lg-3
+  h4 Valid Models
+  
+  table.table
+    thead
+      tr
+        th Model Name
+        th Actions
+    tbody
+      tr(ng-repeat='f in forms.valid')
+        td
+          .text-center.fa.fa-check(ng-bind='f')
+        td
+          a.btn.btn-primary
+            i.fa.fa-edit
+      tr(ng-show='!forms.valid.length')
+        td(colspan='2')
+          span 0 missing forms
+        
+  

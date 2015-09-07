@@ -1,0 +1,16 @@
+.col-xs-12.col-sm-3.col-md-3.col-lg-3
+  h4 Resource List
+  
+  table.table
+    thead
+      tr
+        th Model Name
+    tbody
+      tr(ng-repeat='f in forms.resources')
+        td
+          .text-center.fa.fa-check(ng-bind='f')
+      tr(ng-show='!forms.resources.length')
+        td(colspan='2')
+          span 0 missing forms
+        
+  

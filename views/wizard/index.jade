@@ -12,16 +12,16 @@ include ../../../../views/layouts/app
     link(rel='stylesheet', href='#{theme}')
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/application.min.css')
-  body.prototype-red.ng-cloak
+  body.ng-cloak.prototype-red
     include ../../../../views/layouts/navbar
     .container
       include ../../../../views/index/sections/home
     .container
-      .jumbotron(ng-controller='WizardController', ng-show='token')
-        .row
-          .col-md-6.col-xs-12
-            h2 Under Construction
-            a.btn.btn-primary.btn-lg.col-md-12.col-xs-12(href='/')
-              i.fa.fa-home
-              | Home
+      .row(ng-controller='WizardController', ng-show='token')
+        include ../../../../views/layouts/alerts
+        include sections/resources
+        include sections/models
+        include sections/valid
+        include sections/missing
+    
     include ../../../../views/layouts/scripts
