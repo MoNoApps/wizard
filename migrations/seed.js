@@ -4,8 +4,9 @@ var db = require('../../../helpers/models');
 db.settings.Update(
   {"type" : "properties"},
   { $pull: { "data.admin": "wizard"} }
-);
-db.settings.Update(
-  {"type" : "properties"},
-  { $push: { "data.admin": "wizard"} }
-);
+  {w: 1}, function() {
+    db.settings.Update(
+      {"type" : "properties"},
+      { $push: { "data.admin": "wizard"} }
+    );
+});
