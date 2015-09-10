@@ -1,7 +1,8 @@
 {
   "dburl": "mongodb://127.0.0.1/wizard",
   "pages":[
-    "wizard"
+    "wizard",
+    "editor"
   ],
   "resources": {
   }

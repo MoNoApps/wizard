@@ -4,6 +4,11 @@ var api = {
       route: "analize",
       fn: require('./api/wizard').analize,
       params: {}
+    },
+    {
+      route: "analize",
+      fn: require('./api/wizard').analize,
+      params: {model: 'model'}
     }
   ],
   POST: [

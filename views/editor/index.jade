@@ -1,6 +1,6 @@
 include ../../../../views/layouts/app
   head
-    title Wizard Forms
+    title Model Editor
 
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -12,17 +12,19 @@ include ../../../../views/layouts/app
     link(rel='stylesheet', href='#{theme}')
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/application.min.css')
-    
   body.ng-cloak.prototype-red
     include ../../../../views/layouts/navbar
     .container
       include ../../../../views/index/sections/home
     .container
-      .row(ng-controller='WizardController', ng-show='token')
+      .row(ng-controller='EditorController', ng-show='token')
         include ../../../../views/layouts/alerts
-        include sections/resources
-        include sections/models
-        include sections/valid
-        include sections/missing
+        include sections/info
+        .workplace(ng-show='view!="preview"')
+          include sections/keys
+          include sections/editor
+          include sections/wiki
+        .preview(ng-show='view=="preview"')
+          include sections/preview
     
     include ../../../../views/layouts/scripts
