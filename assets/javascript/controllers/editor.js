@@ -1,4 +1,4 @@
-window.app.controller('EditorController',['$scope', 'Editor', function($scope, Editor) {
+window.app.controller('EditorController',['$scope', 'Editor', '$timeout', function($scope, Editor, $timeout) {
 
   $scope.token =  window.localStorage.getItem('token');
   var token = '?token=' + window.localStorage.getItem('token');
@@ -15,8 +15,10 @@ window.app.controller('EditorController',['$scope', 'Editor', function($scope, E
   $scope.view = 'editor';
 
   $scope.colName = function() {
-    $scope.collection = $scope.resource.desc.split(' ').join('_').toLowerCase();
-    $scope.resource.collection = angular.copy($scope.collection);
+    if(!$scope.modelForm.modelInput.$error.pattern) {
+      $scope.collection = $scope.resource.desc.split(' ').join('').toLowerCase();
+      $scope.resource.collection = angular.copy($scope.collection);
+    }
   };
 
   $scope.goToKeyBox = function() {
@@ -60,5 +62,14 @@ window.app.controller('EditorController',['$scope', 'Editor', function($scope, E
     $scope.resource.schema[$scope.prop.name] = window.angular.copy($scope.prop);
     $scope.prop = false;
   };
+
+  var init = function() {
+    $timeout(function() {
+      $scope.resource.desc = angular.copy(Editor.model());
+      $scope.colName();
+    }, 1);
+  };
+
+  init();
 
 }]);

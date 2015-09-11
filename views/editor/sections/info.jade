@@ -3,18 +3,20 @@
     h4 Generic Info
     h5 Model name: 
       strong(ng-bind='collection')
-    .input-group
-      input.form-control(
-        ng-keypress="($event.which === 13)?goToKeyBox():0",
-        placeholder='Model name in plural, not "$" char or "system" prefix allowed', 
-        type='text', ng-model='resource.desc', autofocus='', ng-keyup='colName()')
-      span.input-group-btn
-        a.btn.btn-primary.col-xs-12.col-sm-12.col-md-12.col-lg-12.fa.fa-eye(
-          ng-show='view!="preview"'
-          ng-disabled='!collection', ng-click='setView("preview")')  JSON
-        a.btn.btn-success.col-xs-12.col-sm-12.col-md-12.col-lg-12.fa.fa-eye-slash(
-          ng-show='view=="preview"',
-          ng-disabled='!collection', ng-click='setView("workplace")')  JSON
+    form(name='modelForm')
+      .input-group(ng-class='{ "has-error": modelForm.modelInput.$error.pattern}')
+        input.form-control(
+          name='modelInput', ng-pattern='/^[A-Za-z]+$/',
+          ng-keypress="($event.which === 13)?goToKeyBox():0",
+          placeholder='Model name in plural, not "$" char or "system" prefix allowed',
+          type='text', ng-model='resource.desc', autofocus='', ng-keyup='colName()')
+        span.input-group-btn
+          a.btn.btn-primary.col-xs-12.col-sm-12.col-md-12.col-lg-12.fa.fa-eye(
+            ng-show='view!="preview"'
+            ng-disabled='!collection', ng-click='setView("preview")')  JSON
+          a.btn.btn-success.col-xs-12.col-sm-12.col-md-12.col-lg-12.fa.fa-eye-slash(
+            ng-show='view=="preview"',
+            ng-disabled='!collection', ng-click='setView("workplace")')  JSON
     
   .col-xs-12.col-sm-12.col-md-6.col-lg-6
     h4 Filters
