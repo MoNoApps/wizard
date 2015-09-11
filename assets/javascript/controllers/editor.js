@@ -52,6 +52,7 @@ window.app.controller('EditorController',['$scope', 'Editor', '$timeout', functi
 
   $scope.setView = function(view) {
     $scope.view = view;
+    pretiffy();
   };
 
   $scope.pinKey = function(key) {
@@ -61,6 +62,12 @@ window.app.controller('EditorController',['$scope', 'Editor', '$timeout', functi
   $scope.saveKey = function() {
     $scope.resource.schema[$scope.prop.name] = window.angular.copy($scope.prop);
     $scope.prop = false;
+  };
+
+  var pretiffy = function() {
+    var content = JSON.stringify($scope.resource, undefined, 2);
+    var template = Editor.jshl(content);
+    Editor.draw('#jsonmodel', template);
   };
 
   var init = function() {

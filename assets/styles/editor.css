@@ -1,0 +1,15 @@
+.null {
+  color: orange;
+}
+.string {
+  color: green;
+}
+.number {
+  color: red;
+}
+.boolean {
+  color: blue;
+}
+.array {
+  color: orange;
+}
