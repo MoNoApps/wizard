@@ -1,4 +1,4 @@
-window.app.controller('EditorController',['$scope', 'Editor', '$timeout', function($scope, Editor, $timeout) {
+window.app.controller('EditorController',['$scope', 'Editor', '$timeout', '$rootScope', function($scope, Editor, $timeout, $rootScope) {
 
   $scope.token =  window.localStorage.getItem('token');
   var token = '?token=' + window.localStorage.getItem('token');
@@ -22,6 +22,7 @@ window.app.controller('EditorController',['$scope', 'Editor', '$timeout', functi
   };
 
   $scope.goToKeyBox = function() {
+    Editor.tabs('#keys');
     Editor.focus('[ng-model="name"]');
   };
 
@@ -50,19 +51,21 @@ window.app.controller('EditorController',['$scope', 'Editor', '$timeout', functi
     $scope.resource.schema[key].exclude = !value;
   };
 
-  $scope.setView = function(view) {
-    $scope.view = view;
-    pretiffy();
-  };
-
   $scope.pinKey = function(key) {
     $scope.prop = window.angular.copy($scope.resource.schema[key]);
+    Editor.tabs('#editor');
   };
 
   $scope.saveKey = function() {
     $scope.resource.schema[$scope.prop.name] = window.angular.copy($scope.prop);
     $scope.prop = false;
+    $scope.goToKeyBox();
   };
+
+  $rootScope.$on('editor::draw', function () {
+    pretiffy();
+  });
+
 
   var pretiffy = function() {
     var content = JSON.stringify($scope.resource, undefined, 2);
@@ -70,7 +73,16 @@ window.app.controller('EditorController',['$scope', 'Editor', '$timeout', functi
     Editor.draw('#jsonmodel', template);
   };
 
+  var hash = function(){
+    var url = document.location.toString();
+    if (url.match('#')) {
+      Editor.tabs('.nav-tabs a[href=#'+url.split('#')[1]+']');
+    }
+  };
+
   var init = function() {
+    Editor.nav();
+    hash();
     $timeout(function() {
       $scope.resource.desc = angular.copy(Editor.model());
       $scope.colName();
@@ -78,5 +90,6 @@ window.app.controller('EditorController',['$scope', 'Editor', '$timeout', functi
   };
 
   init();
+  Editor.nav();
 
 }]);

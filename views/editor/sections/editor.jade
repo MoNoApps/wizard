@@ -1,19 +1,19 @@
-.col-xs-12.col-sm-6.col-md-6.col-lg-6(ng-show='collection')
-  h4 Editor
+h4 Editor
   
-  .form-group(ng-show='!prop')
-    .text-center Select a key to edit
+.form-group(ng-show='!prop')
+  .text-center No key selected to edit
+  a.btn.btn-primary(ng-click='goToKeyBox()') View key list
   
-  form.form-horizontal.pre-scrollable(ng-show='prop')
-    fieldset
-      .form-group
-        label.col-md-3.control-label Name
-        .col-md-9
-          input.form-control(type='text', ng-model='prop.name', disabled='')
-      .form-group
-        label.col-md-3.control-label Type
-        .col-md-9
-          select.form-control(ng-model='prop.type')
+form.form-horizontal(ng-show='prop')
+  fieldset.pre-scrollable
+    .form-group
+      label.col-md-3.control-label Name
+      .col-md-9
+        input.form-control(type='text', ng-model='prop.name', disabled='')
+    .form-group
+      label.col-md-3.control-label Type
+      .col-md-9
+        select.form-control(ng-model='prop.type')
               option(value='button') button
               option(value='checkbox') checkbox
               option(value='color') color
@@ -36,29 +36,29 @@
               option(value='time') time
               option(value='url') url
               option(value='week') week
-      .form-group
-        label.col-md-3.control-label Text
-        .col-md-9
-          input.form-control(type='text', ng-model='prop.text')
-      .form-group
-        label.col-md-3.control-label Autocomplete
-        .col-md-9
-          input.form-control(type='checkbox', ng-model='prop.autocomplete')
-      .form-group
-        label.col-md-3.control-label Autofocus
-        .col-md-9
-          input.form-control(type='checkbox', ng-model='prop.autofocus')
-      .form-group
-        label.col-md-3.control-label Checked
-        .col-md-9
-          input.form-control(type='checkbox', ng-model='prop.checked')
-      .form-group
-        label.col-md-3.control-label Disabled
-        .col-md-9
-          input.form-control(type='checkbox', ng-model='prop.disabled')
-      .form-group
-        label.col-md-3.control-label Pattern
-        .col-md-9
+    .form-group
+      label.col-md-3.control-label Text
+      .col-md-9
+        input.form-control(type='text', ng-model='prop.text')
+    .form-group
+      label.col-md-3.control-label Autocomplete
+      .col-md-9
+        input.form-control(type='checkbox', ng-model='prop.autocomplete')
+    .form-group
+      label.col-md-3.control-label Autofocus
+      .col-md-9
+        input.form-control(type='checkbox', ng-model='prop.autofocus')
+    .form-group
+      label.col-md-3.control-label Checked
+      .col-md-9
+        input.form-control(type='checkbox', ng-model='prop.checked')
+    .form-group
+      label.col-md-3.control-label Disabled
+      .col-md-9
+        input.form-control(type='checkbox', ng-model='prop.disabled')
+    .form-group
+      label.col-md-3.control-label Pattern
+      .col-md-9
           input.form-control(type='text', ng-model='prop.pattern')
       .form-group
         label.col-md-3.control-label Readonly
@@ -68,23 +68,23 @@
         label.col-md-3.control-label Source
         .col-md-9
           input.form-control(type='text', ng-model='prop.src')
-      .form-group
-        label.col-md-3.control-label Default Value
-        .col-md-9
-          input.form-control(type='text', ng-model='prop.value')
-      .form-group
-        label.col-md-3.control-label Max Length
-        .col-md-9
-          input.form-control(type='checkbox', ng-model='prop.maxlength')
-      .form-group
-        label.col-md-3.control-label Min
-        .col-md-9
-          input.form-control(type='number', ng-model='prop.min')
-      .form-group
-        label.col-md-3.control-label Max
-        .col-md-9
-          input.form-control(type='number', ng-model='prop.max')
+    .form-group
+      label.col-md-3.control-label Default Value
+      .col-md-9
+        input.form-control(type='text', ng-model='prop.value')
+    .form-group
+      label.col-md-3.control-label Max Length
+      .col-md-9
+        input.form-control(type='checkbox', ng-model='prop.maxlength')
+    .form-group
+      label.col-md-3.control-label Min
+      .col-md-9
+         input.form-control(type='number', ng-model='prop.min')
+    .form-group
+      label.col-md-3.control-label Max
+      .col-md-9
+        input.form-control(type='number', ng-model='prop.max')
       
-  .text-center(ng-show='prop')
-    a.btn.btn-primary.col-sm-6.fa.fa-check(ng-click='saveKey()')
-    a.btn.btn-danger.col-sm-6.fa.fa-trash(ng-click='pinKey()')
+ .text-center(ng-show='prop')
+  a.btn.btn-primary.col-sm-6.fa.fa-check(ng-click='saveKey()')
+  a.btn.btn-warning.col-sm-6.fa.fa-list(ng-click='goToKeyBox()')

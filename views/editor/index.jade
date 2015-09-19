@@ -16,15 +16,9 @@ include ../../../../views/layouts/app
     include ../../../../views/layouts/navbar
     .container
       include ../../../../views/index/sections/home
-    .container
-      .row(ng-controller='EditorController', ng-show='token')
-        include ../../../../views/layouts/alerts
-        include sections/info
-        .workplace(ng-show='view!="preview"')
-          include sections/keys
-          include sections/editor
-          include sections/wiki
-        .preview(ng-show='view=="preview"')
-          include sections/preview
+    .container(ng-controller='EditorController')
+     include ../../../../views/layouts/alerts
+     include togger
+     include content
     
     include ../../../../views/layouts/scripts

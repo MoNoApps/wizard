@@ -1,0 +1,31 @@
+h4 Filters
+table.table
+    tbody
+      tr
+        td
+          i.fa.fa-shield
+        td
+          span Admin only
+        td
+          input.form-control(type='checkbox', ng-model='resource.admin')
+        td
+          span Accesor attribute
+      tr
+        td
+          i.fa.fa-key
+        td
+          span Param name
+        td
+          input.form-control(type='text', ng-model='resource.param')
+        td
+          span Singular model name
+      tr
+        td
+          i.fa.fa-archive
+        td
+          span Exclude
+        td
+          input.form-control(type='checkbox', ng-model='resource.exclude')
+        td
+          span Add model but not API or VIEW
+

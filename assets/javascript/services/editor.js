@@ -1,5 +1,5 @@
-window.app.service('Editor', [
-  function() {
+window.app.service('Editor', ['$rootScope',
+  function($rootScope) {
     var model = function() {
       var search = window.location.search;
       if(search.indexOf('?model=') !== -1) {
@@ -9,7 +9,7 @@ window.app.service('Editor', [
       return '';
     };
 
-    var expression = /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*)?|\b(0|1|true|false|null|undefined)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g;
+    var expression = /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*)?|\b(true|false|null|undefined)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g;
     var jshl = function (content) {
       content = content
         .replace(/&/g, '&amp;')
@@ -20,7 +20,7 @@ window.app.service('Editor', [
           var type = 'number';
           if (/^"/.test(match)) {
             type = 'string';
-          } else if (/0|1|true|false|undefined/.test(match)) {
+          } else if (/true|false|undefined/.test(match)) {
             type = 'boolean';
           } else if (/null/.test(match)) {
             type = 'null';
@@ -38,9 +38,28 @@ window.app.service('Editor', [
       $(selector).html(template);
     };
 
+    var tabs = function(selector) {
+      $('a[href="' + selector + '"]').click();
+      $(selector).tab('show');
+    };
+
+    var nav = function() {
+      $('.nav-tabs a').on('shown.bs.tab', function (e) {
+        window.location.hash = e.target.hash;
+        if(e.target.hash=='#keys') {
+          focus('[ng-model="name"]');
+        }
+        if(e.target.hash=='#preview') {
+          $rootScope.$emit('editor::draw');
+        }
+      });
+    };
+
     return {
+      nav: nav,
       jshl: jshl,
       draw: draw,
+      tabs: tabs,
       focus: focus,
       model: model
     };
