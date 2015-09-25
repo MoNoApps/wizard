@@ -1,16 +1,16 @@
 # Wizard
-Wizard is the extension to create forms using resource definitions in config files of the core and plugins Deck App.
+Create and edit your models.
 
 ## Tree File Structure
 ````
 .
 ├── README.md
-├── api          #RESTfull API
-├── assets       #Jade, JS, CSS
-├── helpers      #
-├── migrations   #Your own definitions
-├── package.json #NPM definition
-├── plank.js
+├── api
+├── assets
+├── helpers
+├── migrations
+├── package.json
+├── plugin.js
 ├── sio
 ├── test
 │   ├── e2e
@@ -20,12 +20,12 @@ Wizard is the extension to create forms using resource definitions in config fil
 ````
 
 ## Module Package Export
-Tools are declared in plank.js
+Tools are declared in plugin.js
 
 ## Add this package as github module
 ````sh
-git submodule add git@github.com:MoNoApps/wizard.git planks/wizard
+git submodule add git@github.com:MoNoApps/wizard.git plugins/wizard
 ````
 
 ## Run migrations
-node planks/wizard/migrations/seed.js
+node plugins/wizard/migrations/seed.js
