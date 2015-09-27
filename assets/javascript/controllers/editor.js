@@ -3,6 +3,19 @@ window.app.controller('EditorController',['$scope', 'Editor', '$timeout', '$root
   $scope.token =  window.localStorage.getItem('token');
   var token = '?token=' + window.localStorage.getItem('token');
 
+  $scope.tags = {
+    input: {
+      options: [
+        'button', 'checkbox', 'color', 'date', 'datetime',
+        'datetime-local', 'email', 'file', 'hidden', 'image',
+        'month', 'number', 'password', 'radio', 'range', 'reset',
+        'search', 'tel', 'text', 'time', 'url', 'week'
+      ]
+    },
+    select: { },
+    textarea: { }
+  };
+
   $scope.resource = {
     desc: '',
     collection: '',
