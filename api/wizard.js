@@ -2,8 +2,8 @@ var utils = require('../../../helpers/utils');
 var controllers = require('../../../api/controllers');
 var review = require('../../../helpers/manager').review;
 var manager = require('../../../helpers/manager').response;
-var wizard = require('../../../core/_wizard');
-var form = require('../../../core/_form');
+var wizard = require('../../../autoform/_wizard');
+var form = require('../../../autoform/_form');
 
 var analize = function(req, res){
   review({ req: req, res: res, admin: true}, function(err, opt){
