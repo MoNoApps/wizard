@@ -1,4 +1,6 @@
-window.app.controller('EditorController',['$scope', 'Editor', '$timeout', '$rootScope', function($scope, Editor, $timeout, $rootScope) {
+window.app.controller('EditorController',[
+'$scope', '$http', 'Editor', '$timeout', '$rootScope', 
+function($scope, $http, Editor, $timeout, $rootScope) {
 
   $scope.token =  window.localStorage.getItem('token');
   var token = '?token=' + window.localStorage.getItem('token');
@@ -75,10 +77,20 @@ window.app.controller('EditorController',['$scope', 'Editor', '$timeout', '$root
     $scope.goToKeyBox();
   };
 
+  var getTargets = function() {
+    $http.get('/api/wizard/targets' + token)
+    .success(function(data){
+      $scope.targets = data;
+    });
+  };
+
   $rootScope.$on('editor::draw', function () {
     pretiffy();
   });
 
+  $rootScope.$on('editor::targets', function () {
+    getTargets();
+  });
 
   var pretiffy = function() {
     var content = JSON.stringify($scope.resource, undefined, 2);

@@ -9,6 +9,11 @@ var api = {
       route: "analize",
       fn: require('./api/wizard').analize,
       params: {model: 'model'}
+    },
+    {
+      route: 'targets',
+      fn: require('./api/publish').targets,
+      params: {}
     }
   ],
   POST: [

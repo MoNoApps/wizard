@@ -52,6 +52,9 @@ window.app.service('Editor', ['$rootScope',
         if(e.target.hash=='#preview') {
           $rootScope.$emit('editor::draw');
         }
+        if(e.target.hash=='#publish') {
+          $rootScope.$emit('editor::targets');
+        }
       });
     };
 

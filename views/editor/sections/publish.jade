@@ -8,5 +8,5 @@ h4 Publish
 
 div
   h5 Target selection
-  a.btn.btn-default.col-md-4 Config :: Main App
-  a.btn.btn-primary.col-md-4(ng-repeat='c in configs')
+  a.btn.btn-primary.col-xs-12.col-sm-12.col-md-12.col-lg-12(ng-repeat='target in targets',ng-click='setTarget(target)')
+    span(ng-bind='target.name')
