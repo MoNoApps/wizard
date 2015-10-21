@@ -7,15 +7,16 @@ var targets = function(req, res){
     var P = '/plugins';
     var C = '/config.json';
     var all = [];
-    var main = __dirname;
-    main = main.substring(0, main.indexOf('/plugins')) + '/config.json';
-    all.push({name: 'Main', dir: main});
+    var dir = __dirname;
+    dir = dir.substring(0, dir.indexOf(P));
+    var main = dir + C;
+    all.push({name: 'main', dir: main});
     var list = require(main).plugins;
     for(var p in list){
       var name = list[p];
       all.push({
         name: name,
-        dir: main + '/' + name + P
+        dir: dir + P + '/' + name + C
       });
     }
     manager({req: req, res: res, err: err, rsp: all});

@@ -1,9 +1,15 @@
 window.app.controller('EditorController',[
-'$scope', '$http', 'Editor', '$timeout', '$rootScope', 
-function($scope, $http, Editor, $timeout, $rootScope) {
-
-  $scope.token =  window.localStorage.getItem('token');
-  var token = '?token=' + window.localStorage.getItem('token');
+  '$scope',
+  '$http',
+  'Editor',
+  '$timeout',
+  '$rootScope',
+function(
+  $scope,
+  $http,
+  Editor,
+  $timeout,
+  $rootScope) {
 
   $scope.tags = {
     input: {
@@ -22,12 +28,16 @@ function($scope, $http, Editor, $timeout, $rootScope) {
     desc: '',
     collection: '',
     admin: true,
-    schema: {}
+    param: '',
+    clean: {},
+    schema: {},
+    exclude: false
   };
 
   $scope.collection = '';
   $scope.prop = false;
   $scope.view = 'editor';
+  $scope.token = window.localStorage.getItem('token');
 
   $scope.colName = function() {
     if(!$scope.modelForm.modelInput.$error.pattern) {
@@ -78,27 +88,37 @@ function($scope, $http, Editor, $timeout, $rootScope) {
   };
 
   var getTargets = function() {
-    $http.get('/api/wizard/targets' + token)
+    $http.get('/api/wizard/targets')
     .success(function(data){
       $scope.targets = data;
     });
   };
 
-  $rootScope.$on('editor::draw', function () {
+  var cleaner = function() {
+    $scope.resource.clean = {};
+    for (var prop in $scope.resource.schema) {
+      if ($scope.resource.schema[prop].exclude) {
+        $scope.resource.clean[prop] = 1;
+      }
+    }
+  };
+
+  $rootScope.$on('editor::draw', function() {
     pretiffy();
   });
 
-  $rootScope.$on('editor::targets', function () {
+  $rootScope.$on('editor::targets', function() {
     getTargets();
   });
 
   var pretiffy = function() {
+    cleaner();
     var content = JSON.stringify($scope.resource, undefined, 2);
     var template = Editor.jshl(content);
     Editor.draw('#jsonmodel', template);
   };
 
-  var hash = function(){
+  var hash = function() {
     var url = document.location.toString();
     if (url.match('#')) {
       Editor.tabs('.nav-tabs a[href=#'+url.split('#')[1]+']');

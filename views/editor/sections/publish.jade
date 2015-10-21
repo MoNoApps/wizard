@@ -1,12 +1,15 @@
 h4 Publish
-.alert.alert-warning
-  .row
-    p.col-md-6.col-xs-12 Publish the JSON model
-    p.col-md-6.col-xs-12 Replace the current model
-    p.col-md-6.col-xs-12 App reboot it is needed
-    p.col-md-6.col-xs-12 Review, approve, save
-
-div
-  h5 Target selection
-  a.btn.btn-primary.col-xs-12.col-sm-12.col-md-12.col-lg-12(ng-repeat='target in targets',ng-click='setTarget(target)')
-    span(ng-bind='target.name')
+.row
+  .col-xs-12.col-sm-6.col-md-6.col-lg-6
+    h5 Target files
+    ul
+      li(ng-repeat='target in targets')
+        strong(ng-bind='target.name+": "')
+        span(ng-bind='target.dir')
+  .col-xs-12.col-sm-6.col-md-6.col-lg-6
+    h5 Instructions
+    ul
+      li Select your target
+      li Identify "resources" key
+      li Add/Modify your model
+      li Use JSON from "Preview" tab

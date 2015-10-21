@@ -7,9 +7,17 @@
   .col-md-9
     select.form-control(ng-model='prop.type', ng-options='type for type in tags.input.options')
 .form-group
+  label.col-md-3.control-label Placeholder
+  .col-md-9
+    input.form-control(type='text', ng-model='prop.placeholder')
+.form-group
   label.col-md-3.control-label Text
   .col-md-9
     input.form-control(type='text', ng-model='prop.text')
+.form-group
+  label.col-md-3.control-label Required
+  .col-md-9
+    input.form-control(type='checkbox', ng-model='prop.required')
 .form-group
   label.col-md-3.control-label Autocomplete
   .col-md-9
