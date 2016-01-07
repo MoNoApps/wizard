@@ -35,7 +35,10 @@ function(
 
   // private functions
   var action = function(method, list){
-    $http.post('/api/wizard/' + method, list);
+    $http.post('/api/wizard/' + method, list)
+    .success(function () {
+      init();
+    });
   };
 
   var init = function(){
