@@ -10,6 +10,8 @@ form.form-horizontal(ng-show='prop')
       include tags/input
     div(ng-switch-when='select')
       include tags/select
+    div(ng-switch-when='image')
+      include tags/image
     div(ng-switch-when='textarea')
       include tags/textarea
       

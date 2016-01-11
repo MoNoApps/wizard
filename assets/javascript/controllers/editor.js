@@ -15,10 +15,13 @@ function(
     input: {
       options: [
         'button', 'checkbox', 'color', 'date', 'datetime',
-        'datetime-local', 'email', 'file', 'hidden', 'image',
+        'datetime-local', 'email', 'file', 'hidden',
         'month', 'number', 'password', 'radio', 'range', 'reset',
         'search', 'tel', 'text', 'time', 'url', 'week'
       ]
+    },
+    image: {
+      options: ['text', 'url']
     },
     select: { },
     textarea: { }
