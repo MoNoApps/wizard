@@ -16,5 +16,7 @@ form.form-horizontal(ng-show='prop')
       include tags/textarea
       
  .text-center(ng-show='prop')
-  a.btn.btn-primary.col-sm-6.fa.fa-check(ng-click='saveKey()')
-  a.btn.btn-warning.col-sm-6.fa.fa-list(ng-click='goToKeyBox()')
+  a.btn.btn-primary.col-sm-6(ng-click='saveKey()')
+    i.fa.fa-check
+  a.btn.btn-warning.col-sm-6(ng-click='goToKeyBox()')
+    i.fa.fa-list

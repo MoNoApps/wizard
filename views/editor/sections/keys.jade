@@ -1,12 +1,15 @@
 h4 Keys Feed
 span(ng-show='collection') Manage the model's field names
-span(ng-show='!collection') Before add keys must to add a valid model name
+span(ng-show='!collection')
+  a.btn.btn-primary(href="#info", data-toggle="tab", role="tab") Add a model/schema name
 .input-group(ng-show='collection')
     input.form-control(
       ng-keypress="($event.which === 13)?addKey():0",
       type='text', ng-model='name', required='')
-    span.input-group-btn
-      a.btn.btn-success.fa.fa-plus(ng-click='addKey()', ng-disabled='!collection')
+    span.input-group-addon
+      a.btn.btn-success(ng-click='addKey()', ng-disabled='!collection')
+        span  Add Key 
+        i.fa.fa-plus
 .pre-scrollable(ng-show='collection')
     table.table
       thead
@@ -28,13 +31,14 @@ span(ng-show='!collection') Before add keys must to add a valid model name
               option image
               option textarea
           td
-            a.btn.btn-primary.fa.fa-filter(
-              ng-show='field.exclude',
+            a.btn.btn-primary(ng-show='field.exclude',
               ng-click='excludeToggle(field.name, field.exclude )')
-            a.btn.btn-warning.fa.fa-user(
-              ng-show='!field.exclude',
+              i.fa.fa-filter
+            a.btn.btn-warning(ng-show='!field.exclude',
               ng-click='excludeToggle(field.name, field.exclude )')
-            a.btn.btn-danger.fa.fa-trash(ng-click='removeKey(field.name)')
+              i.fa.fa-user
+            a.btn.btn-danger(ng-click='removeKey(field.name)')
+              i.fa.fa-trash
             a.btn.btn-success(ng-click='pinKey(field.name)')
-              span.glyphicon.glyphicon-pushpin
+              i.fa.fa-bars
             

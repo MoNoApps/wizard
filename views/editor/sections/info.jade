@@ -3,14 +3,15 @@
   h5 Model: 
     strong(ng-bind='collection')
   form(name='modelForm')
-    .input-group.input-group-l(ng-class='{ "has-error": modelForm.modelInput.$error.pattern}')
+    .input-group(ng-class='{ "has-error": modelForm.modelInput.$error.pattern}')
       span.input-group-addon
-        i.fa.fa-columns.fa-3x
+        a.btn.btn-info
+          i.fa.fa-columns
       input.form-control(
         name='modelInput', ng-pattern='/^[A-Za-z]+$/',
         ng-keypress="($event.which === 13)?goToKeyBox():0",
         placeholder='Model name in plural, not "$" char or "system" prefix allowed',
         type='text', ng-model='resource.desc', autofocus='', ng-keyup='colName()')
       span.input-group-addon
-        a.btn.btn-primary.btn-lg
-          i.fa.fa-list.fa-fa-3x
+        a.btn.btn-primary
+          i.fa.fa-list
